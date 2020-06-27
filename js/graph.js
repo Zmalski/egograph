@@ -2,10 +2,10 @@ var nodes = null;
 var edges = null;
 var network = null;
 
-function draw() {
+function draw(nodes, edges) {
     // create people.
     // value corresponds with the age of the person
-    nodes = [
+    /*nodes = [
         { id: 1, value: 2, label: "Algie" },
         { id: 2, value: 31, label: "Alston" },
         { id: 3, value: 12, label: "Barney" },
@@ -24,7 +24,7 @@ function draw() {
         { from: 2, to: 8, value: 3, title: "3 emails per week" },
         { from: 2, to: 9, value: 5, title: "5 emails per week" },
         { from: 2, to: 10, value: 1, title: "1 emails per week" },
-        { from: 4, to: 6, value: 8, title: "8 emails per week" },
+        { from: 4, to: 6, value: 8, title: "8 emails per week", },
         { from: 5, to: 7, value: 2, title: "2 emails per week" },
         { from: 4, to: 5, value: 1, title: "1 emails per week" },
         { from: 9, to: 10, value: 2, title: "2 emails per week" },
@@ -32,7 +32,7 @@ function draw() {
         { from: 3, to: 9, value: 4, title: "4 emails per week" },
         { from: 5, to: 3, value: 1, title: "1 emails per week" },
         { from: 2, to: 7, value: 4, title: "4 emails per week" }
-    ];
+    ];*/
 
     // Instantiate our network object.
     var container = document.getElementById("mynetwork");
@@ -53,7 +53,3 @@ function draw() {
     };
     network = new vis.Network(container, data, options);
 }
-
-window.addEventListener("load", () => {
-    draw();
-});
