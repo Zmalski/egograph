@@ -2,7 +2,7 @@ var nodes = null;
 var edges = null;
 var network = null;
 
-function draw(nodes, edges) {
+function draw(nodes, edges, destroy) {
     // create people.
     // value corresponds with the age of the person
     /*nodes = [
@@ -35,6 +35,8 @@ function draw(nodes, edges) {
     ];*/
 
     // Instantiate our network object.
+    if (destroy === true)
+        network.destroy();
     var container = document.getElementById("mynetwork");
     var data = {
         nodes: nodes,
@@ -52,4 +54,9 @@ function draw(nodes, edges) {
         }
     };
     network = new vis.Network(container, data, options);
+}
+
+function reset(nodes, edges) {
+
+
 }
