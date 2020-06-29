@@ -2,20 +2,18 @@ var nodes = null;
 var edges = null;
 var id = 1;
 var init = false;
-var c = false;
-var limit = 25;
 var existingNodes = [];
-var outerNodes = [{}];
 
 function run() {
     var term = $("#search").val(); // Grab search term
-    foo(myCallback);
-    console.log("After foo");
-    getXML(term, id);
-
+    var outerNodes = [{ id: 1, label: term }];
+    cont(outerNodes);
+    console.log("Continue");
+    draw(nodes, edges);
 }
 
 function process(result, fromId, term) {
+    var outerNodes = [];
     if (init === false) {
         nodes = [{ id: id, value: 1, label: term }]; // Initialize nodes and edges structures
         edges = [{ from: id, to: (id + 1), value: 5 }];
@@ -38,6 +36,7 @@ function process(result, fromId, term) {
                         id++;
                         existingNodes.push(split[2]); // Track existing nodes
                         nodes.push({ id: id, value: 1, label: split[2] }); // Add element to nodes
+                        console.log("Adding " + split[2] + " To outernodes");
                         outerNodes.push({ id: id, label: split[2] }); // Track outer nodes
                         if (init == true) {
                             console.log("Adding edge between " + term + " and " + split[2]);
@@ -61,7 +60,7 @@ function process(result, fromId, term) {
                             }
                         }
                         if (matchFound == false && fromId != targetId) { // If no match, add new edge
-                            console.log("Adding edge between " + fromId + " and " + targetId);
+                            console.log("Adding edge between " + term + " and " + split[2]);
                             edges.push({ from: fromId, to: targetId, value: count });
                         }
                     }
@@ -77,32 +76,34 @@ function process(result, fromId, term) {
 
 
     });
-    if (c === false) {
-        c = true;
-        console.log("Triggering continue");
-        cont();
-    } else
-        draw(nodes, edges);
     console.log("finished");
+    return outerNodes;
 
 }
 
-function cont() {
-    /*for (var i = 0; i < edges.length; i++) {
-        console.log("nodes output: from: " + edges[i]["from"] + "to: " + edges[i]["to"]);
-    }*/
-    var max = nodes.length;
-    for (var i = 1; i < max; i++) {
-        var node = outerNodes.pop();
-        getXML(node["label"], node["id"]);
-        console.log("xml loop done");
+async function cont(outerNodes) {
+    for (var i = 0; i < outerNodes.length; i++) {
+        console.log("OUTERNODES:" + outerNodes[i]["label"]);
     }
-    console.log("drawing");
-    //draw(nodes, edges);
+
+    // Loop through nodes, one-at-a-time
+    for (const node of outerNodes) {
+        // Make the HTTP request
+        await fetch("https://cors-anywhere.herokuapp.com/http://suggestqueries.google.com/complete/search?&output=toolbar&gl=us&hl=en&q=" + node["label"] + "%20vs%20")
+            .then(response => { // Parse data into text
+                console.log("Node: " + node["label"]);
+                return response.text();
+            })
+            .then(data => { // Parse text into xml and process
+                var parser = new DOMParser();
+                var xml = parser.parseFromString(data, "text/xml");
+                process(xml, node["id"], node["label"]);
+            })
+    }
 
 }
 
-
+/* Deprecated
 function getXML(term, fromId) {
 
     var url = "https://cors-anywhere.herokuapp.com/http://suggestqueries.google.com/complete/search?&output=toolbar&gl=us&hl=en&q=" + term + "%20vs%20";
@@ -110,20 +111,10 @@ function getXML(term, fromId) {
         url: url,
         dataType: "xml",
         success: function(result) {
-            process(result, fromId, term);
-            // Move code here, this is sequential.
+            var outerNodes = process(result, fromId, term);
+            cont(outerNodes);
         }
     });
 
 }
-
-function foo(callback) {
-    setTimeout(function() { callback(); }, 3000);
-    console.log("I'M FOOING");
-    result = 42;
-
-}
-
-function myCallback(result) {
-    console.log("RESULT RESULT RESULT RESULT REUSLT" + result);
-}
+*/
