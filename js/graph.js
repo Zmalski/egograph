@@ -2,41 +2,33 @@ var nodes = null;
 var edges = null;
 var network = null;
 
-function draw(nodes, edges, destroy) {
-    // create people.
-    // value corresponds with the age of the person
-    /*nodes = [
-        { id: 1, value: 2, label: "Algie" },
-        { id: 2, value: 31, label: "Alston" },
-        { id: 3, value: 12, label: "Barney" },
-        { id: 4, value: 16, label: "Coley" },
-        { id: 5, value: 17, label: "Grant" },
-        { id: 6, value: 15, label: "Langdon" },
-        { id: 7, value: 6, label: "Lee" },
-        { id: 8, value: 5, label: "Merlin" },
-        { id: 9, value: 30, label: "Mick" },
-        { id: 10, value: 18, label: "Tod" }
-    ];
+function draw(nodes, edges) {
 
-    // create connections between people
-    // value corresponds with the amount of contact between two people
-    edges = [
-        { from: 2, to: 8, value: 3, title: "3 emails per week" },
-        { from: 2, to: 9, value: 5, title: "5 emails per week" },
-        { from: 2, to: 10, value: 1, title: "1 emails per week" },
-        { from: 4, to: 6, value: 8, title: "8 emails per week", },
-        { from: 5, to: 7, value: 2, title: "2 emails per week" },
-        { from: 4, to: 5, value: 1, title: "1 emails per week" },
-        { from: 9, to: 10, value: 2, title: "2 emails per week" },
-        { from: 2, to: 3, value: 6, title: "6 emails per week" },
-        { from: 3, to: 9, value: 4, title: "4 emails per week" },
-        { from: 5, to: 3, value: 1, title: "1 emails per week" },
-        { from: 2, to: 7, value: 4, title: "4 emails per week" }
-    ];*/
+    for (var i = 0; i < nodes.length; i++) {
+        if (nodes[i]["value"] == 1) {
+            nodes[i]["color"]["background"] = "#63B0CF";
+            nodes[i]["color"]["border"] = "#358AAC";
+        } else if (nodes[i]["value"] == 2) {
+            nodes[i]["color"]["background"] = "#C2925B";
+            nodes[i]["color"]["border"] = "#956937";
+        } else if (nodes[i]["value"] == 3) {
+            nodes[i]["color"]["background"] = "#F2502C";
+            nodes[i]["color"]["border"] = "#C02D0C";
+        } else if (nodes[i]["value"] == 4) {
+            nodes[i]["color"]["background"] = "#BEE675";
+            nodes[i]["color"]["border"] = "#9ED930";
+        } else if (nodes[i]["value"] == 5) {
+            nodes[i]["color"]["background"] = "#8533D7";
+            nodes[i]["color"]["border"] = "#5C1E99";
+        } else if (nodes[i]["value"] == 6) {
+            nodes[i]["color"]["background"] = "#F877C0";
+            nodes[i]["color"]["border"] = "#F42A9C";
+        } else if (nodes[i]["value"] > 6) {
+            nodes[i]["color"]["background"] = "#9E84AE";
+            nodes[i]["color"]["border"] = "#765988";
+        }
+    }
 
-    // Instantiate our network object.
-    if (destroy === true)
-        network.destroy();
     var container = document.getElementById("mynetwork");
     var data = {
         nodes: nodes,
@@ -47,13 +39,58 @@ function draw(nodes, edges, destroy) {
             shape: "dot",
             scaling: {
                 label: {
-                    min: 8,
-                    max: 20
-                }
+                    min: 10,
+                    max: 18
+                },
+                min: 10,
+                max: 24
+            },
+            font: {
+                size: 12,
+                face: "Tahoma"
+            }
+        },
+        physics: {
+            forceAtlas2Based: {
+                gravitationalConstant: -30,
+                centralGravity: 0.007,
+                springLength: 180,
+                springConstant: 0.25
+            },
+            solver: "forceAtlas2Based"
+        },
+        edges: {
+            color: {
+                color: "#757575",
+                highlight: "#ff0000",
+                opacity: 0.5
+            },
+            smooth: {
+                enabled: true,
+                type: "dynamic"
             }
         }
     };
     network = new vis.Network(container, data, options);
+    network.on("stabilizationProgress", function(params) {
+        var maxWidth = 496;
+        var minWidth = 20;
+        var widthFactor = params.iterations / params.total;
+        var width = Math.max(minWidth, maxWidth * widthFactor);
+
+        document.getElementById("bar").style.width = width + "px";
+        document.getElementById("text").innerHTML =
+            Math.round(widthFactor * 100) + "%";
+    });
+    network.once("stabilizationIterationsDone", function() {
+        document.getElementById("text").innerHTML = "100%";
+        document.getElementById("bar").style.width = "496px";
+        document.getElementById("loadingBar").style.opacity = 0;
+        // really clean the dom element
+        setTimeout(function() {
+            document.getElementById("loadingBar").style.display = "none";
+        }, 500);
+    });
 }
 
 function reset(nodes, edges) {

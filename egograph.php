@@ -5,7 +5,7 @@
     <title>
         EgoGrapher
     </title>
-    <meta name="viewport" content="width=device-width; initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/graph.css">
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -30,9 +30,18 @@
     <div id="div2">
 
     </div>
-    <div id="mynetwork">
-
+    <div id="wrapper">
+  <div id="mynetwork"></div>
+  <div id="loadingBar">
+    <div class="outerBorder">
+      <div id="text">0%</div>
+      <div id="border">
+        <div id="bar"></div>
+      </div>
     </div>
+  </div>
+</div>
+
 
     </div>
 </body>
