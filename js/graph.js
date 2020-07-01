@@ -72,7 +72,9 @@ function draw(nodes, edges) {
         }
     };
     network = new vis.Network(container, data, options);
-    network.on("stabilizationProgress", function(params) {
+
+    /*
+    network.on("stabilizationProgress", function(params) { // For Loading
         var maxWidth = 496;
         var minWidth = 20;
         var widthFactor = params.iterations / params.total;
@@ -82,7 +84,7 @@ function draw(nodes, edges) {
         document.getElementById("text").innerHTML =
             Math.round(widthFactor * 100) + "%";
     });
-    network.once("stabilizationIterationsDone", function() {
+    network.once("stabilizationIterationsDone", function() { // For loading
         document.getElementById("text").innerHTML = "100%";
         document.getElementById("bar").style.width = "496px";
         document.getElementById("loadingBar").style.opacity = 0;
@@ -90,10 +92,5 @@ function draw(nodes, edges) {
         setTimeout(function() {
             document.getElementById("loadingBar").style.display = "none";
         }, 500);
-    });
-}
-
-function reset(nodes, edges) {
-
-
+    });*/
 }

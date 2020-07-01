@@ -3,7 +3,7 @@ var edges = null;
 var id = 0;
 var init = false;
 var existingNodes = [];
-const radius = 4;
+const radius = 3;
 const defEdgeWeight = 25;
 const maxWeight = 11;
 
