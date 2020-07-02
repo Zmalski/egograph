@@ -24,7 +24,7 @@ header.masthead {
     background: url("../img/masthead-2.jpg") no-repeat center center;
     background-size: cover;
     padding-top: 8rem;
-    padding-bottom: 8rem;
+    padding-bottom: 3rem;
 }
 
 header.masthead .overlay {
@@ -42,10 +42,23 @@ header.masthead h1 {
     color: #3b3b3b;
 }
 
+header.masthead p {
+    font-size: 1.4rem;
+    color: #3b3b3b;
+}
+
+.descriptors {
+    font-size: 1.4rem;
+}
+
+.descriptors li {
+    font-size: 1.4rem;
+}
+
 @media (min-width: 768px) {
     header.masthead {
         padding-top: 10rem;
-        padding-bottom: 8rem;
+        padding-bottom: 4rem;
     }
     header.masthead h1 {
         font-size: 3rem;

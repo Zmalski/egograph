@@ -5,6 +5,7 @@ body {
 
 #mynetwork {
     border: 1px solid lightgray;
+    width: 100%;
 }
 
 #loadingBar {

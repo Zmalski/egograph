@@ -6,6 +6,8 @@
     <title>
         EgoGrapher
     </title>
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A website for generating ego-graphs depending on user input.">
     <meta name="author" content="Zach M">
@@ -28,7 +30,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
 
 
     <!-- Masthead -->
@@ -37,12 +39,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-9 mx-auto">
-                    <h1 class="mb-5">Ego-Grapher</h1>
+                    <h1>Ego-Grapher</h1>
+                    <p class="mb-5 lead">Enter a single word and generate your own ego graph.</p>
                 </div>
-                <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                <div class="col-md-10 col-lg-8 col-xl-7 mx-auto" id="graph-area">
                     <div class="form-row">
                         <div class="col-12 col-md-9 mb-2 mb-md-0">
-                            <input type="text" class="form-control form-control-lg" placeholder="Enter a search term..." id="search">
+                            <input type="text" class="form-control form-control-lg" placeholder="Enter a term to be graphed..." id="search">
                         </div>
                         <div class="col-12 col-md-3">
                             <button class="btn btn-block btn-lg btn-primary" onclick="javascript:run()">Build</button>
@@ -53,126 +56,111 @@
         </div>
     </header>
 
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#graph-area">Graph</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#what">What is this?</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#how">How does it work?</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#insight">Insights</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#limits">Limitations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About Me & Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-2">
+        <h2>Graph Area</h2>
+        <p>Below is where your generated graph will appear after you hit the "build" button.</p>
+    </div>
+
     <!-- Network Graph Window-->
     <div class="container" id="mynetwork">
     </div>
-
-    <!-- Icons Grid -->
-    <section class="features-icons bg-light text-center">
+    <section class="py-5" id="what">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                        <div class="features-icons-icon d-flex">
-                            <i class="icon-screen-desktop m-auto text-primary"></i>
-                        </div>
-                        <h3>Fully Responsive</h3>
-                        <p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                        <div class="features-icons-icon d-flex">
-                            <i class="icon-layers m-auto text-primary"></i>
-                        </div>
-                        <h3>Bootstrap 4 Ready</h3>
-                        <p class="lead mb-0">Featuring the latest build of the new Bootstrap 4 framework!</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-                        <div class="features-icons-icon d-flex">
-                            <i class="icon-check m-auto text-primary"></i>
-                        </div>
-                        <h3>Easy to Use</h3>
-                        <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
-                    </div>
-                </div>
-            </div>
+            <h1>What is this?</h1>
+            <p class="descriptors">This tool generates a network graph (specifically an ego graph) based on the user-provided initial term in the box above. The provided term has a node on the graph (focal node) and every other node is within a set "radius" of it. In this case,
+                the default radius is 4, so every node is within 4 connections or "hops" of the focal node. As the radius increases, the number of nodes required to be processed increases exponentially. A node's size and colour is determined by how many
+                nodes have a connection to it.
+            </p>
+            <p>The idea for this website was inspired by <a href="https://medium.com/applied-data-science/the-google-vs-trick-618c8fd5359f">this article</a> on the subject by David Foster, I suggest you give it a read if you haven't. </p>
+            <p>Pretty graphs built with the help of the awesome Vis.js library: <a href="https://visjs.org/">https://visjs.org</a></p>
         </div>
     </section>
-
-    <!-- Image Showcases -->
-    <section class="showcase">
-        <div class="container-fluid p-0">
-            <div class="row no-gutters">
-
-                <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('img/bg-showcase-1.jpg');"></div>
-                <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                    <h2>Fully Responsive Design</h2>
-                    <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!</p>
-                </div>
-            </div>
-            <div class="row no-gutters">
-                <div class="col-lg-6 text-white showcase-img" style="background-image: url('img/bg-showcase-2.jpg');"></div>
-                <div class="col-lg-6 my-auto showcase-text">
-                    <h2>Updated For Bootstrap 4</h2>
-                    <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 4 is leading the way in mobile responsive web development! All of the themes on Start Bootstrap are now using Bootstrap 4!</p>
-                </div>
-            </div>
-            <div class="row no-gutters">
-                <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('img/bg-showcase-3.jpg');"></div>
-                <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                    <h2>Easy to Use &amp; Customize</h2>
-                    <p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who demand some deeper customization options. Out of the box, just add your content and images, and your new landing page will be ready to go!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials text-center bg-light">
+    <section class="py-5" id="how">
         <div class="container">
-            <h2 class="mb-5">What people are saying...</h2>
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                        <img class="img-fluid rounded-circle mb-3" src="img/testimonials-1.jpg" alt="">
-                        <h5>Margaret E.</h5>
-                        <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                        <img class="img-fluid rounded-circle mb-3" src="img/testimonials-2.jpg" alt="">
-                        <h5>Fred S.</h5>
-                        <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                        <img class="img-fluid rounded-circle mb-3" src="img/testimonials-3.jpg" alt="">
-                        <h5>Sarah W.</h5>
-                        <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
-                    </div>
-                </div>
-            </div>
+            <h1>How does it work?</h1>
+            <p class="descriptors">Enter a term, press "Build" and see for yourself! Since creating visual graphs can be a little demanding, it may take up to a minute or two to draw the graph, please be patient! Nodes can be selected by clicking on them, which will highlight
+                all edges heading into and out of the node, allowing for easier tracing of the graph. Nodes can also be dragged, allowing you to re-position the graph. The graph can be zoomed in and out, and labels will not show up unless the graph is
+                zoomed in enough. </p>
+
+            <p>Under the hood, the graph is built using the Vis.js library and the Force Atlas 2 Based physics solver and is programmed with JavaScript. The site was built using Bootstrap.</p>
+        </div>
+    </section>
+    <section class="py-5" id="insight">
+        <div class="container">
+            <h1>Insights</h1>
+            <p class="descriptors">
+                <ul style="font-size: 1.2rem;">
+                    <li>Clusters or "neighbourhoods" of nodes tend to share a common characteristic. For example, "shoes", "boots", "sandals" and "loafers" would all be in the same neighbourhood since they are all footwear.</li>
+                    <li>Larger nodes tend to be more important and "keystone" concepts since they have more nodes that lead into them.</li>
+                </ul>
+            </p>
+        </div>
+    </section>
+    <section class="py-5" id="limits">
+        <div class="container">
+            <h1>Limitations</h1>
+            <p class="descriptors">
+                <ul style="font-size: 1.2rem;">
+                    <li>Any terms that contain more than a single word are not supported as of now. These require substantially more processing and would likely result in a decrease of the quality of graphs generated.</li>
+                    <li>Due to its exponential nature, the radius has a relatively low limit. Since this is a website the main reason for this limitation is user experience. Nobody wants to wait upwards of 10 minutes for a graph to load on a gimmicky website.
+                    </li>
+                    <li>Vis.js contains no functions for k-edge subgraph analysis as David Foster used in his original article. While this does result in unrelated terms to pop up (like "apple vs orange" and "apple vs microsoft"), I believe the tangents that
+                        the graph can get lost in make for very interesting paths to follow as well as neighbourhoods of nodes that may be completely unexpected.</li>
+                </ul>
+            </p>
+        </div>
+    </section>
+    <section class="py-5" id="about">
+        <div class="container">
+            <h1>About Me and Contact</h1>
+            <p class="descriptors">This website and tool were built by me, Zachary Maludzinski. I'm a fifth year Computer Science student currently studying at UBC in Kelowna, British Columbia, Canada.
+
+            </p>
+            <p>If you’d like to get in touch, please email me at
+                <a href="mailto:zacharymaludzinski@gmail.com">zacharymaludzinski@gmail.com</a>.</p>
         </div>
     </section>
 
-    <!-- Call to Action -->
+
+    <!-- Thank you -->
     <section class="call-to-action text-white text-center">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
                 <div class="col-xl-9 mx-auto">
-                    <h2 class="mb-4">Ready to get started? Sign up now!</h2>
-                </div>
-                <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                    <form>
-                        <div class="form-row">
-                            <div class="col-12 col-md-9 mb-2 mb-md-0">
-                                <input type="email" class="form-control form-control-lg" placeholder="Enter your email...">
-                            </div>
-                            <div class="col-12 col-md-3">
-                                <button type="submit" class="btn btn-block btn-lg btn-primary">Sign up!</button>
-                            </div>
-                        </div>
-                    </form>
+                    <h1 class="mb-4">Thanks for visiting!</h2>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- Footer -->
     <footer class="footer bg-light">
@@ -181,11 +169,7 @@
                 <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
                     <ul class="list-inline mb-2">
                         <li class="list-inline-item">
-                            <a href="#">About</a>
-                        </li>
-                        <li class="list-inline-item">&sdot;</li>
-                        <li class="list-inline-item">
-                            <a href="#">Contact</a>
+                            <a href="#about">About & Contact</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
@@ -197,25 +181,6 @@
                         </li>
                     </ul>
                     <p class="text-muted small mb-4 mb-lg-0">&copy; ego-grapher.com 2020. All Rights Reserved.</p>
-                </div>
-                <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
-                    <ul class="list-inline mb-0">
-                        <li class="list-inline-item mr-3">
-                            <a href="#">
-                                <i class="fab fa-facebook fa-2x fa-fw"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item mr-3">
-                            <a href="#">
-                                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">
-                                <i class="fab fa-instagram fa-2x fa-fw"></i>
-                            </a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>

@@ -2,8 +2,17 @@ var nodes = null;
 var edges = null;
 var network = null;
 
-function draw(nodes, edges) {
 
+function destroy() {
+    if (network !== null) {
+        network.destroy();
+        network = null;
+    }
+}
+
+function draw(nodes, edges) {
+    destroy();
+    // Colour nodes by size
     for (var i = 0; i < nodes.length; i++) {
         if (nodes[i]["value"] == 1) {
             nodes[i]["color"]["background"] = "#63B0CF";
