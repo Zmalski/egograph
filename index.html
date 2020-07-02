@@ -56,11 +56,12 @@
         </div>
     </header>
 
+    <!--Nav bar-->
     <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <div class="collapse navbar-collapse sticky-top" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="#graph-area">Graph</a>
@@ -85,11 +86,18 @@
     </nav>
     <div class="container mt-2">
         <h2>Graph Area</h2>
-        <p>Below is where your generated graph will appear after you hit the "build" button.</p>
+        <p>Below is where your generated graph will appear after you hit the "build" button. You can zoom in and out as well as select/move nodes.</p>
+    </div>
+    <!--Progress Bar-->
+    <div class="container col-6 mb-2">
+        <div class="progress" style="height: 1.3rem;" hidden>
+            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:0%">0%</div>
+        </div>
     </div>
 
     <!-- Network Graph Window-->
     <div class="container" id="mynetwork">
+
     </div>
     <section class="py-5" id="what">
         <div class="container">
@@ -118,7 +126,7 @@
             <p class="descriptors">
                 <ul style="font-size: 1.2rem;">
                     <li>Clusters or "neighbourhoods" of nodes tend to share a common characteristic. For example, "shoes", "boots", "sandals" and "loafers" would all be in the same neighbourhood since they are all footwear.</li>
-                    <li>Larger nodes tend to be more important and "keystone" concepts since they have more nodes that lead into them.</li>
+                    <li>Larger nodes tend to be more important and "keystone" concepts. These nodes have more edges leading into them, making them common suggestions.</li>
                 </ul>
             </p>
         </div>

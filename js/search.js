@@ -7,13 +7,30 @@ const radius = 4;
 const defEdgeWeight = 25;
 const maxWeight = 11;
 
+$(document).ready(function() { // Detect enter key press on search function
+    $("#search").on('keyup', function(e) {
+        if (e.keyCode === 13) {
+            run();
+        }
+    });
+});
+
 function run() {
+    $(".progress").removeAttr("hidden"); // Reset loading bar
+    $(".progress").show();
+    $(".progress-bar").removeClass("bg-success");
     nodes = [];
     edges = [];
     existingNodes = [];
     id = 0;
     init = false;
-    $("#mynetwork").height("45rem");
+    console.log(screen.width);
+    if (screen.width > 769)
+        $("#mynetwork").height("45rem");
+    else if (screen.width > 993)
+        $("#mynetwork").height("35rem");
+    else
+        $("#mynetwork").height("20rem");
     var term = $("#search").val(); // Grab search term
     var outerNodes = [{ id: id, label: term }];
     cont(outerNodes, function() { // Callback for sequentiality
@@ -89,6 +106,10 @@ function process(result, fromId, term) {
 
                     } else { // Add new node
                         id++;
+                        if (id < 81) { // Update loading bar up to 80%, drawing will take the rest, should give good feedback
+                            $(".progress-bar").css("width", id + "%");
+                            $(".progress-bar").html(id + "%");
+                        }
                         existingNodes.push(split[2]); // Track existing nodes
                         nodes.push({ id: id, value: 1, label: split[2], color: { background: "#D2E5FF", border: "#000000" } }); // Add element to nodes
                         //console.log("Adding " + split[2] + " To outernodes");

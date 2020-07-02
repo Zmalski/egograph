@@ -82,24 +82,21 @@ function draw(nodes, edges) {
     };
     network = new vis.Network(container, data, options);
 
-    /*
+
     network.on("stabilizationProgress", function(params) { // For Loading
         var maxWidth = 496;
         var minWidth = 20;
         var widthFactor = params.iterations / params.total;
         var width = Math.max(minWidth, maxWidth * widthFactor);
+        var total = ((widthFactor * 100) / 5) + 80;
 
-        document.getElementById("bar").style.width = width + "px";
-        document.getElementById("text").innerHTML =
-            Math.round(widthFactor * 100) + "%";
+        $(".progress-bar").css("width", total + "%");
+        $(".progress-bar").html(total + "%");
     });
     network.once("stabilizationIterationsDone", function() { // For loading
-        document.getElementById("text").innerHTML = "100%";
-        document.getElementById("bar").style.width = "496px";
-        document.getElementById("loadingBar").style.opacity = 0;
-        // really clean the dom element
-        setTimeout(function() {
-            document.getElementById("loadingBar").style.display = "none";
-        }, 500);
-    });*/
+        $(".progress-bar").css("width", "100%");
+        $(".progress-bar").html("100%");
+        $(".progress-bar").addClass("bg-success");
+        $(".progress").hide(1500);
+    });
 }
