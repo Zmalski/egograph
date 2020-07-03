@@ -14,6 +14,7 @@ $(document).ready(function() { // Detect enter key press on search function
         }
     });
     $(".error-text").hide(0);
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 function run() {
@@ -186,6 +187,7 @@ function validateTerm() { //Ensure user entered only one word
     var term = $("#search").val();
     if (term === "" || /\s/.test(term)) {
         $("#search").addClass("error");
+        $(".error-text").removeAttr("hidden");
         $(".error-text").show(0);
         return false;
     } else {
