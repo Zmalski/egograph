@@ -13,30 +13,33 @@ $(document).ready(function() { // Detect enter key press on search function
             run();
         }
     });
+    $(".error-text").hide(0);
 });
 
 function run() {
-    $(".progress").removeAttr("hidden"); // Reset loading bar
-    $(".progress").show();
-    $(".progress-bar").removeClass("bg-success");
-    nodes = [];
-    edges = [];
-    existingNodes = [];
-    id = 0;
-    init = false;
-    console.log(screen.width);
-    if (screen.width > 769)
-        $("#mynetwork").height("45rem");
-    else if (screen.width > 993)
-        $("#mynetwork").height("35rem");
-    else
-        $("#mynetwork").height("27rem");
-    var term = $("#search").val(); // Grab search term
-    var outerNodes = [{ id: id, label: term }];
-    cont(outerNodes, function() { // Callback for sequentiality
-        //console.log("Drawing");
-        draw(nodes, edges);
-    });
+    if (validateTerm() === true) {
+        $(".progress").removeAttr("hidden"); // Reset loading bar
+        $(".progress").show();
+        $(".progress-bar").removeClass("bg-success");
+        nodes = [];
+        edges = [];
+        existingNodes = [];
+        id = 0;
+        init = false;
+        console.log(screen.width);
+        if (screen.width > 769)
+            $("#mynetwork").height("45rem");
+        else if (screen.width > 993)
+            $("#mynetwork").height("35rem");
+        else
+            $("#mynetwork").height("27rem");
+        var term = $("#search").val(); // Grab search term
+        var outerNodes = [{ id: id, label: term }];
+        cont(outerNodes, function() { // Callback for sequentiality
+            //console.log("Drawing");
+            draw(nodes, edges);
+        });
+    }
 
 }
 
@@ -178,3 +181,17 @@ function getXML(term, fromId) {
 
 }
 */
+
+function validateTerm() { //Ensure user entered only one word
+    var term = $("#search").val();
+    if (term === "" || /\s/.test(term)) {
+        $("#search").addClass("error");
+        $(".error-text").show(0);
+        return false;
+    } else {
+        $("#search").removeClass("error");
+        $(".error-text").hide(0);
+        return true;
+    }
+
+}
