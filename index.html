@@ -103,9 +103,10 @@
         <div class="container">
             <h1>What is this?</h1>
             <p class="descriptors">This tool generates a network graph (specifically an ego graph) based on the user-provided initial term in the box above. The provided term has a node on the graph (focal node) and every other node is within a set "radius" of it. In this case,
-                the default radius is 4, so every node is within 4 connections or "hops" of the focal node. As the radius increases, the number of nodes required to be processed increases exponentially. A node's size and colour is determined by how many
-                nodes have a connection to it.
+                the default radius is 4, so every node is within 4 connections or "hops" of the focal node. A node's size and colour is determined by how many nodes have a connection to it.
             </p>
+            <p class="descriptors">Nodes can be selected by clicking on them, which will highlight all edges heading into and out of the node, allowing for easier tracing of the graph. Nodes can also be dragged, allowing you to re-position the graph. The graph can be zoomed
+                in and out, and labels will not show up unless the graph is zoomed in enough.</p>
             <p>The idea for this website was inspired by <a href="https://medium.com/applied-data-science/the-google-vs-trick-618c8fd5359f">this article</a> on the subject by David Foster, I suggest you give it a read if you haven't. </p>
             <p>Pretty graphs built with the help of the awesome Vis.js library: <a href="https://visjs.org/">https://visjs.org</a></p>
         </div>
@@ -113,11 +114,45 @@
     <section class="py-5" id="how">
         <div class="container">
             <h1>How does it work?</h1>
-            <p class="descriptors">Enter a term, press "Build" and see for yourself! Since creating visual graphs can be a little demanding, it may take up to a minute or two to draw the graph, please be patient! Nodes can be selected by clicking on them, which will highlight
-                all edges heading into and out of the node, allowing for easier tracing of the graph. Nodes can also be dragged, allowing you to re-position the graph. The graph can be zoomed in and out, and labels will not show up unless the graph is
-                zoomed in enough. </p>
+            <p class="descriptors">Enter a term, press "Build" and see for yourself! Since creating visual graphs can be a little demanding, it may take up to a minute or two to draw the graph, please be patient! </p>
+            <p class="descriptors">When you hit build, your term is fed into an external URL which returns a set of XML results containing the Google autocomplete suggestions for that term followed by "vs". The top 5 "cleaned" (single word, no double terms, etc.) results are
+                processed to form a series of nodes. This may leave us with the following result:</p>
+            <table class="table col-4 table-striped table-bordered table-hover table-sm table-responsive-sm">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Search Term</th>
+                        <th scope="col">New Node</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>apple vs</td>
+                        <td>android</td>
+                    </tr>
+                    <tr>
+                        <td>apple vs</td>
+                        <td>samsung</td>
+                    </tr>
+                    <tr>
+                        <td>apple vs</td>
+                        <td>microsoft</td>
+                    </tr>
+                    <tr>
+                        <td>apple vs</td>
+                        <td>banana</td>
+                    </tr>
+                    <tr>
+                        <td>apple vs</td>
+                        <td>google</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="descriptors">With each of these new nodes, this process is repeated (e.g. "android vs") until the set radius is reached. However, as the radius increases, the number of nodes required to be processed increases exponentially. There are extra steps for determining
+                edge weight, node size and distance but feel free to read <a href="https://medium.com/applied-data-science/the-google-vs-trick-618c8fd5359f">David Foster's article over at Medium</a> to get a more in-depth overview of the inner-workings.</p>
+
 
             <p>Under the hood, the graph is built using the Vis.js library and the Force Atlas 2 Based physics solver and is programmed with JavaScript. The site was built using Bootstrap.</p>
+            <p>Have a use for this in your own project? All source code available <a href="https://github.com/Zmalski/egographer">here.</a></p>
         </div>
     </section>
     <section class="py-5" id="insight">

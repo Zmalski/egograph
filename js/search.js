@@ -30,7 +30,7 @@ function run() {
     else if (screen.width > 993)
         $("#mynetwork").height("35rem");
     else
-        $("#mynetwork").height("20rem");
+        $("#mynetwork").height("27rem");
     var term = $("#search").val(); // Grab search term
     var outerNodes = [{ id: id, label: term }];
     cont(outerNodes, function() { // Callback for sequentiality
