@@ -6,10 +6,11 @@
     <title>
         EgoGrapher
     </title>
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A website for generating ego-graphs depending on user input.">
+    <meta property="image" content="img/masthead-2.jpg" />
     <meta name="author" content="Zach M">
     <link rel="stylesheet" href="css/graph.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
@@ -117,9 +118,9 @@
         <div class="container">
             <h1>How does it work?</h1>
             <p class="descriptors">Enter a term, press "Build" and see for yourself! Since creating visual graphs can be a little demanding, it may take up to a minute or two to draw the graph, please be patient! </p>
-            <p class="descriptors">When you hit build, your term is fed into an external URL which returns a set of XML results containing the Google autocomplete suggestions for that term followed by "vs". The top 5 "cleaned" (single word, no double terms, etc.) results are
-                processed to form a series of nodes. This may leave us with the following result:</p>
-            <table class="table col-4 table-striped table-bordered table-hover table-sm">
+            <p class="descriptors">When you hit build, your term is fed into an external URL which returns a set of XML results (kind of like a spreadsheet) containing the Google autocomplete suggestions for that term followed by "vs". The top 5 "cleaned" (single word, no double
+                terms, etc.) results are processed to form a series of nodes. For example, with "apple" we might get with the following result:</p>
+            <table class="table col-6 col-md-4 table-striped table-bordered table-hover table-sm">
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">Search Term</th>
