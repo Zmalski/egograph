@@ -27,7 +27,6 @@ function run() {
         existingNodes = [];
         id = 0;
         init = false;
-        console.log(screen.width);
         if (screen.width > 769)
             $("#mynetwork").height("45rem");
         else if (screen.width > 993)

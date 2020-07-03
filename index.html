@@ -76,9 +76,6 @@
                     <a class="nav-link" href="#how">How does it work?</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#insight">Insights</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="#limits">Limitations</a>
                 </li>
                 <li class="nav-item">
@@ -105,11 +102,25 @@
     <section class="py-5" id="what">
         <div class="container">
             <h1>What is this?</h1>
-            <p class="descriptors">This tool generates a network graph (specifically an ego graph) based on the user-provided initial term in the box above. The provided term has a node on the graph (focal node) and every other node is within a set "radius" of it. In this case,
-                the default radius is 4, so every node is within 4 connections or "hops" of the focal node. A node's size and colour is determined by how many nodes have a connection to it.
-            </p>
-            <p class="descriptors">Nodes can be selected by clicking on them, which will highlight all edges heading into and out of the node, allowing for easier tracing of the graph. Nodes can also be dragged, allowing you to re-position the graph. The graph can be zoomed
-                in and out, and labels will not show up unless the graph is zoomed in enough.</p>
+            <div class="row">
+                <div class="col-md-8">
+                    <p class="descriptors">This tool generates a network graph (specifically an <b>ego graph</b>) based on the whatever word you input in the box above. The ego graph is visually represented by a bunch of circles that are called <b>nodes</b>. In this case the
+                        nodes are all basic one-word concepts or terms. You may notice lines connecting the nodes on the graph. Those are relationships between those terms, also known as <b>edges</b>. The thicker an edge, the stronger the <b>relationship</b>                        between two terms. A node's size and colour is determined by how many other nodes have a connection <em>to</em> it.</p>
+                </div>
+                <div class="col align-self-center">
+                    <img class="img-fluid" src="img/diagram.png" alt="A nice diagram." style="max-height:20em">
+                </div>
+
+            </div>
+            <p class="descriptors"> Clusters or "neighbourhoods" of nodes tend to share a common characteristic. For example, "shoes", "boots", "sandals" and "loafers" would all be in the same neighbourhood since they are all footwear. Larger nodes tend to be more important
+                and "keystone" concepts. These nodes have more edges leading into them, making them common suggestions.</p>
+
+
+
+            <p class="descriptors">Once you know this basic information, you can start to extrapolate some really interesting information from the graphs! For example, you could type in "carpentry" and perhaps uncover a whole branch of woodworking you were not familiar with.
+                Or you may enter your favourite brand of sandals to see what else might be in it's neighbourhood.</p>
+            <p class="descriptors"><b>Controls: </b>Nodes can be selected by clicking on them, which will highlight all edges heading into and out of the node, allowing for easier tracing of the graph. Nodes can also be dragged, allowing you to re-position the graph. The graph
+                can be zoomed in and out, and labels will not show up unless the graph is zoomed in enough.</p>
             <p>The idea for this website was inspired by <a href="https://medium.com/applied-data-science/the-google-vs-trick-618c8fd5359f">this article</a> on the subject by David Foster, I suggest you give it a read if you haven't. </p>
             <p>Pretty graphs built with the help of the awesome Vis.js library: <a href="https://visjs.org/">https://visjs.org</a></p>
         </div>
@@ -156,17 +167,6 @@
 
             <p>Under the hood, the graph is built using the Vis.js library and the Force Atlas 2 Based physics solver and is programmed with JavaScript. The site was built using Bootstrap.</p>
             <p>Have a use for this in your own project? All source code available <a href="https://github.com/Zmalski/egographer">here.</a></p>
-        </div>
-    </section>
-    <section class="py-5" id="insight">
-        <div class="container">
-            <h1>Insights</h1>
-            <p class="descriptors">
-                <ul style="font-size: 1.2rem;">
-                    <li>Clusters or "neighbourhoods" of nodes tend to share a common characteristic. For example, "shoes", "boots", "sandals" and "loafers" would all be in the same neighbourhood since they are all footwear.</li>
-                    <li>Larger nodes tend to be more important and "keystone" concepts. These nodes have more edges leading into them, making them common suggestions.</li>
-                </ul>
-            </p>
         </div>
     </section>
     <section class="py-5" id="limits">
