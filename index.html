@@ -115,23 +115,20 @@
             <h1>What is this?</h1>
             <div class="row">
                 <div class="col-md-8">
-                    <p class="descriptors">This tool generates a network graph (specifically an <b>ego graph</b>) based on the whatever word you input in the box above. The ego graph is visually represented by a bunch of circles that are called <b>nodes</b>. In this case the
-                        nodes are all basic one-word concepts or terms. You may notice lines connecting the nodes on the graph. Those are relationships between those terms, also known as <b>edges</b>. The thicker an edge, the stronger the <b>relationship</b>                        between two terms. A node's size and colour is determined by how many other nodes have a connection <em>to</em> it.</p>
+                    <p class="descriptors">This tool creates a network graph, specifically referred to as an ego graph, based on the word you enter in the input box above. The ego graph is visually depicted as a collection of circles known as nodes. In this context, these nodes represent fundamental one-word concepts or terms. You'll observe lines connecting these nodes on the graph; these lines signify relationships between the terms and are called edges. The thickness of an edge reflects the strength of the relationship between two terms. Additionally, a node's size and color are determined by the number of connections it has with other nodes.</p>
                 </div>
                 <div class="col align-self-center">
                     <img class="img-fluid" src="img/diagram.png" alt="A nice diagram." style="max-height:20em">
                 </div>
 
             </div>
-            <p class="descriptors"> Clusters or "neighbourhoods" of nodes tend to share a common characteristic. For example, "shoes", "boots", "sandals" and "loafers" would all be in the same neighbourhood since they are all footwear. Larger nodes tend to be more important
-                and "keystone" concepts. These nodes have more edges leading into them, making them common suggestions.</p>
+            <p class="descriptors">Think of clusters or "neighborhoods" as groups of nodes that share a common characteristic. For instance, "shoes," "boots," "sandals," and "loafers" would all belong to the same neighborhood because they all fall under the category of footwear. Larger nodes tend to be more significant and serve as key concepts. These nodes have more incoming edges, making them frequent suggestions.</p>
 
 
 
             <p class="descriptors">Hopefully this information helps you extract some value from the graphs you generate.</p>
-            <p class="descriptors"><b>Controls: </b>Nodes can be selected by clicking on them, which will highlight all edges heading into and out of the node, allowing for easier tracing of the graph. Nodes can also be dragged, allowing you to re-position the graph. The graph
-                can be zoomed in and out, and labels will not show up unless the graph is zoomed in enough.</p>
-            <p>The idea for this website was inspired by <a href="https://medium.com/applied-data-science/the-google-vs-trick-618c8fd5359f">this article</a> on the subject by David Foster, I suggest you give it a read if you haven't. </p>
+            <p class="descriptors"><b>Controls: </b>You can choose nodes by clicking on them, which highlights the edges connected to the node, making it simpler to follow the graph's connections. Moreover, nodes are movable by dragging them, enabling you to reposition the entire graph. Zooming in and out is also possible, with labels only becoming visible when the graph is sufficiently zoomed in.</p>
+            <p>Idea inspired by David Foster and <a href="https://medium.com/applied-data-science/the-google-vs-trick-618c8fd5359f">his article</a> over at Medium</p>
         </div>
     </section>
     <section class="py-5" id="how">
@@ -170,8 +167,7 @@
                     </tr>
                 </tbody>
             </table>
-            <p class="descriptors">With each of these new nodes, this process is repeated (e.g. "android vs") until the set radius is reached. However, as the radius increases, the number of nodes required to be processed increases exponentially. There are extra steps for determining
-                edge weight, node size and distance but feel free to read <a href="https://medium.com/applied-data-science/the-google-vs-trick-618c8fd5359f">David Foster's article over at Medium</a> to get a more in-depth overview of the inner-workings.</p>
+            <p class="descriptors">For each of these new nodes, the process is iterated, such as "android vs," until the specified radius is reached. There are additional measures involved in determining edge weight, node size, and distance. If you're interested in delving deeper into the mechanics, you can explore David Foster's comprehensive <a href="https://medium.com/applied-data-science/the-google-vs-trick-618c8fd5359f">article on the topic over at Medium.</a></p>
 
 
             <p>The graph is generated using the <a href="https://visjs.org/">Vis.js library</a> in confunction with the Force Atlas 2 Based physics solver and is programmed with vanilla JavaScript. The site was built using Bootstrap.</p>
