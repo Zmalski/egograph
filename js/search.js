@@ -145,7 +145,7 @@ async function cont(outerNodes, callback) {
 
         for (const node of outerNodes) {
             // Make the HTTP request
-            await fetch("https://hidden-lake-02178.herokuapp.com/http://suggestqueries.google.com/complete/search?&output=toolbar&gl=us&hl=en&q=" + node["label"] + "%20vs%20")
+            await fetch("https://corsproxy-zacharymaludzinski.b4a.run/http://suggestqueries.google.com/complete/search?&output=toolbar&gl=us&hl=en&q=" + node["label"] + "%20vs%20")
                 .then(response => { // Parse data into text
                     //console.log("Node: " + node["label"]);
                     return response.text();
