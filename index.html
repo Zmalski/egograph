@@ -132,14 +132,13 @@
             <p class="descriptors"><b>Controls: </b>Nodes can be selected by clicking on them, which will highlight all edges heading into and out of the node, allowing for easier tracing of the graph. Nodes can also be dragged, allowing you to re-position the graph. The graph
                 can be zoomed in and out, and labels will not show up unless the graph is zoomed in enough.</p>
             <p>The idea for this website was inspired by <a href="https://medium.com/applied-data-science/the-google-vs-trick-618c8fd5359f">this article</a> on the subject by David Foster, I suggest you give it a read if you haven't. </p>
-            <p>Pretty graphs built with the help of the awesome Vis.js library: <a href="https://visjs.org/">https://visjs.org</a></p>
         </div>
     </section>
     <section class="py-5" id="how">
         <div class="container">
             <h1>How does it work?</h1>
-            <p class="descriptors">Enter a term, press "Build" and see for yourself! Since creating visual graphs can be a little demanding, it may take up to a minute or two to draw the graph, please be patient! </p>
-            <p class="descriptors">When you hit build, your term is fed into an external URL which returns a set of XML results (kind of like a spreadsheet) containing the Google autocomplete suggestions for that term followed by "vs". The top 5 "cleaned" (single word, no double
+            <p class="descriptors">Enter a term, press "Build" and see for yourself! Tt may take up to a minute or two to draw the graph, please be patient. </p>
+            <p class="descriptors">When you hit build, your term is fed into an external URL which returns a set of XML results containing the Google autocomplete suggestions for that term followed by "vs". The top 5 "cleaned" (single word, no double
                 terms, etc.) results are processed to form a series of nodes. For example, with "apple" we might get with the following result:</p>
             <table class="table col-6 col-md-4 table-striped table-bordered table-hover table-sm">
                 <thead class="thead-light">
@@ -175,7 +174,7 @@
                 edge weight, node size and distance but feel free to read <a href="https://medium.com/applied-data-science/the-google-vs-trick-618c8fd5359f">David Foster's article over at Medium</a> to get a more in-depth overview of the inner-workings.</p>
 
 
-            <p>The graph is generated using the Vis.js library in confunction with the Force Atlas 2 Based physics solver and is programmed with vanilla JavaScript. The site was built using Bootstrap.</p>
+            <p>The graph is generated using the <a href="https://visjs.org/">Vis.js library</a> in confunction with the Force Atlas 2 Based physics solver and is programmed with vanilla JavaScript. The site was built using Bootstrap.</p>
             <p>Source code <a href="https://github.com/Zmalski/egographer">here.</a></p>
         </div>
     </section>
