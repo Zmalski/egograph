@@ -128,8 +128,7 @@
 
 
 
-            <p class="descriptors">Once you know this basic information, you can start to extrapolate some really interesting information from the graphs! For example, you could type in "carpentry" and perhaps uncover a whole branch of woodworking you were not familiar with.
-                Or you may enter your favourite brand of sandals to see what else might be in it's neighbourhood.</p>
+            <p class="descriptors">Hopefully this information helps you extract some value from the graphs you generate.</p>
             <p class="descriptors"><b>Controls: </b>Nodes can be selected by clicking on them, which will highlight all edges heading into and out of the node, allowing for easier tracing of the graph. Nodes can also be dragged, allowing you to re-position the graph. The graph
                 can be zoomed in and out, and labels will not show up unless the graph is zoomed in enough.</p>
             <p>The idea for this website was inspired by <a href="https://medium.com/applied-data-science/the-google-vs-trick-618c8fd5359f">this article</a> on the subject by David Foster, I suggest you give it a read if you haven't. </p>
@@ -176,8 +175,8 @@
                 edge weight, node size and distance but feel free to read <a href="https://medium.com/applied-data-science/the-google-vs-trick-618c8fd5359f">David Foster's article over at Medium</a> to get a more in-depth overview of the inner-workings.</p>
 
 
-            <p>Under the hood, the graph is built using the Vis.js library and the Force Atlas 2 Based physics solver and is programmed with JavaScript. The site was built using Bootstrap.</p>
-            <p>Have a use for this in your own project? All source code available <a href="https://github.com/Zmalski/egographer">here.</a></p>
+            <p>The graph is generated using the Vis.js library in confunction with the Force Atlas 2 Based physics solver and is programmed with vanilla JavaScript. The site was built using Bootstrap.</p>
+            <p>Source code <a href="https://github.com/Zmalski/egographer">here.</a></p>
         </div>
     </section>
     <section class="py-5" id="limits">
@@ -185,11 +184,9 @@
             <h1>Limitations</h1>
             <p class="descriptors">
                 <ul style="font-size: 1.2rem;">
-                    <li>Any terms that contain more than a single word are not supported as of now. These require substantially more processing and would likely result in a decrease of the quality of graphs generated.</li>
-                    <li>Due to its exponential nature, the radius has a relatively low limit. Since this is a website the main reason for this limitation is user experience. Nobody wants to wait upwards of 10 minutes for a graph to load on a gimmicky website.
-                    </li>
-                    <li>Vis.js contains no functions for k-edge subgraph analysis as David Foster used in his original article. While this does result in unrelated terms to pop up (like "apple vs orange" and "apple vs microsoft"), I believe the tangents that
-                        the graph can get lost in make for very interesting paths to follow as well as neighbourhoods of nodes that may be completely unexpected.</li>
+                    <li>Querying with more than a single word is not supported.</li>
+                    <li>Due to its exponential nature, the radius has a relatively low limit (3 or 4). Anything larger results in excessively long load times.</li>
+                    <li>Vis.js contains no functions for k-edge subgraph analysis as David Foster used in his original article. This may result in more unrelated terms to pop up (e.g. "apple vs orange" and "apple vs microsoft" in the same graph. "Orange" and "Microsoft" are not related).</li>
                 </ul>
             </p>
         </div>
