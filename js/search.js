@@ -169,7 +169,7 @@ async function cont(outerNodes, callback) {
 /* Deprecated
 function getXML(term, fromId) {
 
-    var url = "https://cors-anywhere.herokuapp.com/http://suggestqueries.google.com/complete/search?&output=toolbar&gl=us&hl=en&q=" + term + "%20vs%20";
+    var url = "https://corsproxy-zacharymaludzinski.b4a.run/http://suggestqueries.google.com/complete/search?&output=toolbar&gl=us&hl=en&q=" + term + "%20vs%20";
     $.ajax({
         url: url,
         dataType: "xml",
